@@ -24,29 +24,32 @@ function pigLatin(sentence) {
 }
 
 // The first test
-Describe: pigLatin()   
-Test: "It will add 'way' to the end of words that begin with a vowel"
-Expect(pigLatin("apple")).toEqual("appleway");
+// Describe: pigLatin()   
+// Test: "It will add 'way' to the end of words that begin with a vowel"
+// Expect(pigLatin("apple")).toEqual("appleway");
 
-// The second test 
-Describe: pigLatin() 
-Test:"It will move all of the first consecutive consonants to the end, and add 'ay'"
-Expect(pigLatin("johnny")).toEqual("ohnnyjay")
+// // The second test 
+// Describe: pigLatin() 
+// Test:"It will move all of the first consecutive consonants to the end, and add 'ay'"
+// Expect(pigLatin("johnny")).toEqual("ohnnyjay")
 
-//  The third test
-Describe: pigLatin() 
-Test:"It will move constants 'qu' at the begining to the end"
-Expect(pigLatin("queen")).toEqual("eenqu")
+// //  The third test
+// Describe: pigLatin() 
+// Test:"It will move constants 'qu' at the begining to the end"
+// Expect(pigLatin("queen")).toEqual("eenqu")
 
-//  The fourth test
-Describe:`pigLatin()` 
-Test:"It will treat 'y' at the begining of a word as a consonant and move it to the end and add 'ay'"
-Expect(pigLatin("yankee")).toEqual("ankeeyay")
+// //  The fourth test
+// Describe:`pigLatin()` 
+// Test:"It will treat 'y' at the begining of a word as a consonant and move it to the end and add 'ay'"
+// Expect(pigLatin("yankee")).toEqual("ankeeyay")
 
 
 // // User Interface Logic
-// $(document).ready(function() {
-//   $("#formOne").submit(function() {
-//     // Start with Ui after checking the pass test.
-//   })
-// })
+$(document).ready(function() {
+  $("#formOne").submit(function(event) {
+    event.preventDefault();
+    const wordInput = $("#word").val();
+    const pigInput = pigLatin(wordInput);
+    $("#output").text(pigInput);
+  })
+})
