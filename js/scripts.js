@@ -14,8 +14,8 @@ function pigLatin(sentence) {
       if(sentence[i].toLowerCase() !== 'a' && sentence[i].toLowerCase() !== 'e' && sentence[i].toLowerCase() !== 'i' && sentence[i].toLowerCase() !== 'o' && sentence[i].toLowerCase() !== 'u' ) {
 
       }
-      else {
-        let end = sentence.slice(i);
+      else {                               
+        let end = sentence.slice(i);       
         let begining = sentence.slice(0,i);
         return end + begining + 'ay';
       }
@@ -38,10 +38,10 @@ Describe: pigLatin()
 Test:"It will move constants 'qu' at the begining to the end"
 Expect(pigLatin("queen")).toEqual("eenqu")
 
-// // The fourth test
-// Describe:`pigLatin()` 
-// Test:"It will treat 'y' at the begining of a word as a consonant and move it to the end and add 'ay'"
-// Expect(pigLatin("yankee")).toEqual("ankeeyay")
+//  The fourth test
+Describe:`pigLatin()` 
+Test:"It will treat 'y' at the begining of a word as a consonant and move it to the end and add 'ay'"
+Expect(pigLatin("yankee")).toEqual("ankeeyay")
 
 
 // // User Interface Logic
