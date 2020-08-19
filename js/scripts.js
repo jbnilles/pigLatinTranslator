@@ -4,6 +4,17 @@ function pigLatin(sentence) {
   {
     console.log(sentence);
     return sentence.concat('way');
+  } else if (sentence[0].toLowerCase() !== 'a' && sentence[0].toLowerCase() !== 'e' && sentence[0].toLowerCase() !== 'i' && sentence[0].toLowerCase() !== 'o' && sentence[0].toLowerCase() !== 'u') {
+    for (let i = 0; i < sentence.length; i++) {
+      if(sentence[i].toLowerCase() !== 'a' && sentence[i].toLowerCase() !== 'e' && sentence[i].toLowerCase() !== 'i' && sentence[i].toLowerCase() !== 'o' && sentence[i].toLowerCase() !== 'u' ) {
+
+      }
+      else {
+        let end = sentence.slice(i);
+        let begining = sentence.slice(0,i);
+        return end + begining + 'ay';
+      }
+    }
   }
 }
 
@@ -13,9 +24,9 @@ Test: "It will add 'way' to the end of words that begin with a vowel"
 Expect(pigLatin("apple")).toEqual("appleway");
 
 // // The second test 
-// Describe:`pigLatin()` 
-// Test:"It will move all of the first consecutive consonants to the end, and add 'ay'"
-// Expect(pigLatin("johnny")).toEqual("ohnnyjay")
+Describe: pigLatin() 
+Test:"It will move all of the first consecutive consonants to the end, and add 'ay'"
+Expect(pigLatin("johnny")).toEqual("ohnnyjay")
 
 // // The third test
 // Describe:`pigLatin()` 
