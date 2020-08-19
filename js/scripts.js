@@ -1,27 +1,27 @@
 //Business Logic
-function pigLatin(sentence) {
-  if(sentence[0].toLowerCase() === 'a' || sentence[0].toLowerCase() === 'e'||sentence[0].toLowerCase() === 'i'||sentence[0].toLowerCase() === 'o'||sentence[0].toLowerCase() === 'u') {
-    console.log(sentence);
-    return sentence.concat('way');
-  } else if (sentence[0].toLowerCase() !== 'a' && sentence[0].toLowerCase() !== 'e' && sentence[0].toLowerCase() !== 'i' && sentence[0].toLowerCase() !== 'o' && sentence[0].toLowerCase() !== 'u') {
-    if(sentence[0] === 'q' && sentence[1] === 'u')
-    {
-      let end = sentence.slice(2);
-        let begining = sentence.slice(0,2);
-        return end + begining;
-    }
-    for (let i = 0; i < sentence.length; i++) {
-      if(sentence[i].toLowerCase() !== 'a' && sentence[i].toLowerCase() !== 'e' && sentence[i].toLowerCase() !== 'i' && sentence[i].toLowerCase() !== 'o' && sentence[i].toLowerCase() !== 'u' ) {
+// function pigLatin(sentence) {
+//   if(sentence[0].toLowerCase() === 'a' || sentence[0].toLowerCase() === 'e'||sentence[0].toLowerCase() === 'i'||sentence[0].toLowerCase() === 'o'||sentence[0].toLowerCase() === 'u') {
+//     console.log(sentence);
+//     return sentence.concat('way');
+//   } else if (sentence[0].toLowerCase() !== 'a' && sentence[0].toLowerCase() !== 'e' && sentence[0].toLowerCase() !== 'i' && sentence[0].toLowerCase() !== 'o' && sentence[0].toLowerCase() !== 'u') {
+//     if(sentence[0] === 'q' && sentence[1] === 'u')
+//     {
+//       let end = sentence.slice(2);
+//         let begining = sentence.slice(0,2);
+//         return end + begining;
+//     }
+//     for (let i = 0; i < sentence.length; i++) {
+//       if(sentence[i].toLowerCase() !== 'a' && sentence[i].toLowerCase() !== 'e' && sentence[i].toLowerCase() !== 'i' && sentence[i].toLowerCase() !== 'o' && sentence[i].toLowerCase() !== 'u' ) {
 
-      }
-      else {                               
-        let end = sentence.slice(i);       
-        let begining = sentence.slice(0,i);
-        return end + begining + 'ay';
-      }
-    }
-  }
-}
+//       }
+//       else {                               
+//         let end = sentence.slice(i);       
+//         let begining = sentence.slice(0,i);
+//         return end + begining + 'ay';
+//       }
+//     }
+//   }
+// }
 
 // The first test
 // Describe: pigLatin()   
@@ -44,12 +44,38 @@ function pigLatin(sentence) {
 // Expect(pigLatin("yankee")).toEqual("ankeeyay")
 
 
+// Refactoring with regex
+
+function pigLatin1(sentence) {
+  if (/^qu/i.test(sentence)) {
+    let temp = sentence.split(/^(qu)/i); //qu
+    temp.reverse();
+    temp.push('ay');
+    return temp.join("");
+
+  } else if(/^[aeiou]/i.test(sentence)) { //vowel
+    return sentence.concat('way');
+
+  } else if (/^[^aeiou]/i.test(sentence)) { //consonent
+    let temp = sentence.split(/^([^aeiou]{0,})/i);
+    temp = temp.reverse();
+    temp.push('ay');
+    return temp.join("");
+  } 
+  
+
+}
+
+
+
+
+
 // // User Interface Logic
 $(document).ready(function() {
   $("#formOne").submit(function(event) {
     event.preventDefault();
     const wordInput = $("#word").val();
-    const pigInput = pigLatin(wordInput);
+    const pigInput = pigLatin1(wordInput);
     $("#output").text(pigInput);
   })
 })
